@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+   <meta http-equiv="refresh" content="0; url=indext.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهدی مرادی | توسعه‌دهنده فول‌استک</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #06b6d4;
+            --accent-color-2: #10b981;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --shadow: rgba(0, 0, 0, 0.05);
+            --shadow-hover: rgba(0, 0, 0, 0.1);
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --section-spacing: 80px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            font-family: 'Vazirmatn', 'Inter', sans-serif;
+        }
+
+        /* پس‌زمینه سفید */
+        .white-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            z-index: -3;
+        }
+
+        /* المان‌های گرافیکی متعدد */
+        .graphic-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .glowing-element {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+            filter: blur(80px);
+            animation: gentle-rotate 25s linear infinite;
+        }
+
+        .glowing-element-2 {
+            position: absolute;
+            bottom: 15%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+            filter: blur(100px);
+            animation: gentle-rotate-reverse 30s linear infinite;
+        }
+
+        .glowing-element-3 {
+            position: absolute;
+            top: 60%;
+            left: 70%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(239, 68, 68, 0.05) 100%);
+            filter: blur(60px);
+            animation: gentle-rotate 20s linear infinite;
+        }
+
+        /* حلقه‌های چرخان */
+        .orbiting-ring {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            z-index: -1;
+            animation: rotate 40s linear infinite;
+        }
+
+        .orbiting-ring::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .orbiting-ring-2 {
+            position: absolute;
+            bottom: 15%;
+            right: 10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            z-index: -1;
+            animation: rotate-reverse 35s linear infinite;
+        }
+
+        .orbiting-ring-2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color-2);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-color-2);
+        }
+
+        /* کانتینر اصلی گسترده */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* هدر و نویگیشن با انتخابگر زبان */
+        header {
+            padding: 25px 0;
+            margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* انتخابگر زبان */
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--light-bg);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 140px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background-color: var(--light-bg);
+        }
+
+        .language-option.active {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .flag-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .flag-ir {
+            background-color: #da0000;
+            color: white;
+        }
+
+        .flag-us {
+            background-color: #3c3b6e;
+            color: white;
+        }
+
+        .flag-cn {
+            background-color: #de2910;
+            color: #ffde00;
+        }
+
+        /* هیرو بخش */
+        .hero {
+            padding: 80px 0;
+            margin-bottom: var(--section-spacing);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            min-width: 160px;
+            box-shadow: 0 5px 20px var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-stat:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-hover);
+        }
+
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .hero-stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* بخش‌های مختلف */
+        .section {
+            margin-bottom: var(--section-spacing);
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* کارت پروفایل گسترده */
+        .profile-card-wide {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 20px 60px var(--shadow);
+            padding: 60px;
+            width: 100%;
+            margin-bottom: var(--section-spacing);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-card-wide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .profile-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+            border: 5px solid white;
+        }
+
+        .profile-info-wide {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-name-wide {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .profile-title-wide {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        .profile-bio {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        /* مهارت‌های پیشرفته */
+        .skills-advanced {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-hover);
+        }
+
+        .skill-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .skill-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+
+        /* پروژه‌ها */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 15px 40px var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px var(--shadow-hover);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .project-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* جدول زمانی */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 2px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            z-index: 1;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .timeline-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        /* پاورقی گسترده */
+        footer {
+            background-color: var(--light-bg);
+            padding: 80px 0 40px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-color);
+        }
+
+        .footer-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .social-links-wide {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link-wide {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .social-link-wide:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes gentle-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes gentle-rotate-reverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate-reverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .profile-name-wide {
+                font-size: 2.3rem;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .timeline::before {
+                right: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-right: 80px;
+            }
+            
+            .timeline-dot {
+                right: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .profile-card-wide {
+                padding: 40px 25px;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-info-wide {
+                min-width: 100%;
+            }
+            
+            .skills-advanced, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stat {
+                min-width: 130px;
+                padding: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- پس‌زمینه سفید -->
+    <div class="white-bg"></div>
+    
+    <!-- المان‌های گرافیکی متعدد -->
+    <div class="graphic-elements">
+        <div class="glowing-element"></div>
+        <div class="glowing-element-2"></div>
+        <div class="glowing-element-3"></div>
+        <div class="orbiting-ring"></div>
+        <div class="orbiting-ring-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- هدر و نویگیشن -->
+        <header>
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">MM</div>
+                    <span data-i18n="nav.logo">مهدی مرادی</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#home" class="nav-link active" data-i18n="nav.home">خانه</a>
+                    <a href="#about" class="nav-link" data-i18n="nav.about">درباره من</a>
+                    <a href="#skills" class="nav-link" data-i18n="nav.skills">مهارت‌ها</a>
+                    <a href="#projects" class="nav-link" data-i18n="nav.projects">پروژه‌ها</a>
+                    <a href="#timeline" class="nav-link" data-i18n="nav.timeline">جدول زمانی</a>
+                    <a href="#contact" class="nav-link" data-i18n="nav.contact">تماس</a>
+                    
+                    <!-- انتخابگر زبان -->
+                    <div class="language-selector">
+                        <div class="language-btn">
+                            <div class="flag-icon flag-ir">IR</div>
+                            <span data-i18n="language.fa">فارسی</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="language-dropdown">
+                            <div class="language-option active" data-lang="fa">
+                                <div class="flag-icon flag-ir">IR</div>
+                                <span data-i18n="language.fa">فارسی</span>
+                            </div>
+                            <div class="language-option" data-lang="en">
+                                <div class="flag-icon flag-us">US</div>
+                                <span data-i18n="language.en">English</span>
+                            </div>
+                            <div class="language-option" data-lang="zh">
+                                <div class="flag-icon flag-cn">CN</div>
+                                <span data-i18n="language.zh">中文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- بخش هیرو -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-title-gradient" data-i18n="hero.title">توسعه‌دهنده فول‌استک</span><br>
+                    <span data-i18n="hero.subtitle">و متخصص هوش مصنوعی</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero.description">
+                    من مهدی مرادی، یک توسعه‌دهنده نرم‌افزار ۱۵ ساله با ۲ سال تجربه در توسعه وب و هوش مصنوعی هستم. 
+                    عاشق خلق محصولات دیجیتالی هستم که زندگی را آسان‌تر می‌کنند.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="age-display">15</div>
+                        <div class="hero-stat-label" data-i18n="hero.age">سن</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="exp-display">2</div>
+                        <div class="hero-stat-label" data-i18n="hero.experience">سال تجربه</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">۳+</div>
+                        <div class="hero-stat-label" data-i18n="hero.skills">حوزه تخصص</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">۱۰+</div>
+                        <div class="hero-stat-label" data-i18n="hero.projects">پروژه انجام شده</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش درباره من -->
+        <section id="about" class="section">
+            <h2 class="section-title" data-i18n="about.title">درباره من</h2>
+            
+            <div class="profile-card-wide">
+                <div class="profile-header">
+                    <div class="profile-avatar">MM</div>
+                    <div class="profile-info-wide">
+                        <h1 class="profile-name-wide" data-i18n="about.name">مهدی مرادی</h1>
+                        <p class="profile-title-wide" data-i18n="about.role">توسعه‌دهنده فول‌استک و علاقه‌مند به هوش مصنوعی</p>
+                        <p class="profile-bio" data-i18n="about.bio">
+                            من از ۱۳ سالگی شروع به یادگیری برنامه‌نویسی کردم و از آن زمان تاکنون به صورت مستمر در حال یادگیری و توسعه پروژه‌های مختلف بوده‌ام. 
+                            عاشق حل مسائل پیچیده با کد هستم و به تکنولوژی‌های نوین به خصوص در حوزه هوش مصنوعی و یادگیری ماشین علاقه‌مندم.
+                            هدف من ساختن آینده‌ای بهتر با تکنولوژی است.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <div class="hero-stat-value" data-i18n="about.languages.farsi">فارسی</div>
+                                <div class="hero-stat-label" data-i18n="about.languages.native">زبان مادری</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value" data-i18n="about.languages.english">انگلیسی</div>
+                                <div class="hero-stat-label" data-i18n="about.languages.advanced">سطح پیشرفته</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value" data-i18n="about.languages.chinese">چینی</div>
+                                <div class="hero-stat-label" data-i18n="about.languages.basic">سطح پایه</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="passion-section">
+                    <p class="passion-text" style="font-size: 1.4rem; text-align: center; padding: 25px; background: linear-gradient(to right, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border-radius: var(--border-radius); border-right: 4px solid var(--primary-color);">
+                        <i class="fas fa-rocket" style="color: var(--primary-color); margin-left: 10px;"></i>
+                        <span id="passion-text" data-i18n="about.passion">هدف من ساختن آینده‌ای بهتر با تکنولوژی است.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش مهارت‌ها -->
+        <section id="skills" class="section">
+            <h2 class="section-title" data-i18n="skills.title">مهارت‌های تخصصی</h2>
+            
+            <div class="skills-advanced">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-title" data-i18n="skills.frontend.title">توسعه فرانت‌اند</h3>
+                    <p class="skill-desc" data-i18n="skills.frontend.description">
+                        تسلط بر HTML5، CSS3، JavaScript و فریم‌ورک‌های مدرن مانند React.js و Vue.js. 
+                        طراحی رابط کاربری واکنش‌گرا و تجربه کاربری بهینه.
+                    </p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="skill-title" data-i18n="skills.backend.title">توسعه بک‌اند</h3>
+                    <p class="skill-desc" data-i18n="skills.backend.description">
+                        تجربه در توسعه API با Node.js و Express، کار با پایگاه‌داده‌های SQL و NoSQL، 
+                        و پیاده‌سازی معماری‌های نرم‌افزاری مدرن.
+                    </p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="skill-title" data-i18n="skills.ai.title">هوش مصنوعی و یادگیری ماشین</h3>
+                    <p class="skill-desc" data-i18n="skills.ai.description">
+                        آشنایی با مفاهیم پایه هوش مصنوعی، کار با کتابخانه‌هایی مانند TensorFlow و Scikit-learn، 
+                        و پیاده‌سازی مدل‌های ساده یادگیری ماشین.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش پروژه‌ها -->
+        <section id="projects" class="section">
+            <h2 class="section-title" data-i18n="projects.title">پروژه‌های نمونه</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-i18n="projects.project1.title">فروشگاه آنلاین</h3>
+                        <p class="project-desc" data-i18n="projects.project1.description">
+                            یک فروشگاه آنلاین کامل با سیستم مدیریت محتوا، سبد خرید و درگاه پرداخت.
+                            توسعه یافته با React و Node.js.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-i18n="projects.project2.title">سیستم تحلیل داده</h3>
+                        <p class="project-desc" data-i18n="projects.project2.description">
+                            سیستم تحلیل و نمایش داده‌های بزرگ با نمودارهای تعاملی.
+                            توسعه یافته با Python و کتابخانه‌های هوش مصنوعی.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-i18n="projects.project3.title">اپلیکیشن موبایل</h3>
+                        <p class="project-desc" data-i18n="projects.project3.description">
+                            اپلیکیشن موبایل برای مدیریت کارهای روزانه با قابلیت اعلان و همگام‌سازی ابری.
+                            توسعه یافته با React Native.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش جدول زمانی -->
+        <section id="timeline" class="section">
+            <h2 class="section-title" data-i18n="timeline.title">جدول زمانی تجربیات</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۲۰۲۱</div>
+                        <h3 class="timeline-title" data-i18n="timeline.year1.title">شروع برنامه‌نویسی</h3>
+                        <p class="timeline-desc" data-i18n="timeline.year1.description">
+                            شروع یادگیری برنامه‌نویسی با زبان Python و مفاهیم پایه علوم کامپیوتر.
+                            ساخت اولین پروژه‌های ساده مانند ماشین حساب و بازی دوز.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۲۰۲۲</div>
+                        <h3 class="timeline-title" data-i18n="timeline.year2.title">توسعه وب</h3>
+                        <p class="timeline-desc" data-i18n="timeline.year2.description">
+                            یادگیری HTML، CSS و JavaScript. شروع به توسعه وب‌سایت‌های استاتیک و داینامیک.
+                            آشنایی با مفاهیم طراحی واکنش‌گرا و تجربه کاربری.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۲۰۲۳</div>
+                        <h3 class="timeline-title" data-i18n="timeline.year3.title">توسعه فول‌استک</h3>
+                        <p class="timeline-desc" data-i18n="timeline.year3.description">
+                            یادگیری توسعه بک‌اند با Node.js و Express. کار با پایگاه‌داده‌های MongoDB و MySQL.
+                            توسعه اولین اپلیکیشن‌های فول‌استک کامل.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">۲۰۲۴</div>
+                        <h3 class="timeline-title" data-i18n="timeline.year4.title">هوش مصنوعی و پروژه‌های بزرگ</h3>
+                        <p class="timeline-desc" data-i18n="timeline.year4.description">
+                            شروع یادگیری مفاهیم هوش مصنوعی و یادگیری ماشین. توسعه پروژه‌های بزرگ‌تر با معماری پیچیده‌تر.
+                            همکاری در پروژه‌های متن‌باز و مشارکت در جامعه توسعه‌دهندگان.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- پاورقی -->
+        <footer id="contact">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-i18n="footer.aboutTitle">مهدی مرادی</h3>
+                    <p data-i18n="footer.aboutDescription">
+                        توسعه‌دهنده فول‌استک و علاقه‌مند به هوش مصنوعی. متخصص در ساخت وب‌سایت‌های مدرن و اپلیکیشن‌های تحت وب.
+                    </p>
+                    
+                    <div class="social-links-wide">
+                        <a href="#" class="social-link-wide"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link-wide"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link-wide"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link-wide"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link-wide"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-i18n="footer.contactTitle">تماس با من</h3>
+                    <p><i class="fas fa-envelope" style="margin-left: 10px;"></i> mehdi.moradi@example.com</p>
+                    <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +۹۸ ۹۱۲ ۳۴۵ ۶۷۸۹</p>
+                    <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> <span data-i18n="footer.location">تهران، ایران</span></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-i18n="footer.skillsTitle">زبان‌ها</h3>
+                    <div id="footer-skills">
+                        <p><i class="fas fa-check" style="color: var(--accent-color-2); margin-left: 10px;"></i> <span data-i18n="footer.language1">فارسی (زبان مادری)</span></p>
+                        <p><i class="fas fa-check" style="color: var(--accent-color-2); margin-left: 10px;"></i> <span data-i18n="footer.language2">انگلیسی (پیشرفته)</span></p>
+                        <p><i class="fas fa-check" style="color: var(--accent-color-2); margin-left: 10px;"></i> <span data-i18n="footer.language3">چینی (پایه)</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p data-i18n="footer.copyright">© ۲۰۲۴ | طراحی و توسعه توسط مهدی مرادی. تمامی حقوق محفوظ است.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // داده‌های چندزبانه
+        const translations = {
+            fa: {
+                // نویگیشن
+                "nav.logo": "مهدی مرادی",
+                "nav.home": "خانه",
+                "nav.about": "درباره من",
+                "nav.skills": "مهارت‌ها",
+                "nav.projects": "پروژه‌ها",
+                "nav.timeline": "جدول زمانی",
+                "nav.contact": "تماس",
+                
+                // زبان‌ها
+                "language.fa": "فارسی",
+                "language.en": "English",
+                "language.zh": "中文",
+                
+                // هیرو
+                "hero.title": "توسعه‌دهنده فول‌استک",
+                "hero.subtitle": "و متخصص هوش مصنوعی",
+                "hero.description": "من مهدی مرادی، یک توسعه‌دهنده نرم‌افزار ۱۵ ساله با ۲ سال تجربه در توسعه وب و هوش مصنوعی هستم. عاشق خلق محصولات دیجیتالی هستم که زندگی را آسان‌تر می‌کنند.",
+                "hero.age": "سن",
+                "hero.experience": "سال تجربه",
+                "hero.skills": "حوزه تخصص",
+                "hero.projects": "پروژه انجام شده",
+                
+                // درباره من
+                "about.title": "درباره من",
+                "about.name": "مهدی مرادی",
+                "about.role": "توسعه‌دهنده فول‌استک و علاقه‌مند به هوش مصنوعی",
+                "about.bio": "من از ۱۳ سالگی شروع به یادگیری برنامه‌نویسی کردم و از آن زمان تاکنون به صورت مستمر در حال یادگیری و توسعه پروژه‌های مختلف بوده‌ام. عاشق حل مسائل پیچیده با کد هستم و به تکنولوژی‌های نوین به خصوص در حوزه هوش مصنوعی و یادگیری ماشین علاقه‌مندم. هدف من ساختن آینده‌ای بهتر با تکنولوژی است.",
+                "about.passion": "هدف من ساختن آینده‌ای بهتر با تکنولوژی است.",
+                "about.languages.farsi": "فارسی",
+                "about.languages.english": "انگلیسی",
+                "about.languages.chinese": "چینی",
+                "about.languages.native": "زبان مادری",
+                "about.languages.advanced": "سطح پیشرفته",
+                "about.languages.basic": "سطح پایه",
+                
+                // مهارت‌ها
+                "skills.title": "مهارت‌های تخصصی",
+                "skills.frontend.title": "توسعه فرانت‌اند",
+                "skills.frontend.description": "تسلط بر HTML5، CSS3، JavaScript و فریم‌ورک‌های مدرن مانند React.js و Vue.js. طراحی رابط کاربری واکنش‌گرا و تجربه کاربری بهینه.",
+                "skills.backend.title": "توسعه بک‌اند",
+                "skills.backend.description": "تجربه در توسعه API با Node.js و Express، کار با پایگاه‌داده‌های SQL و NoSQL، و پیاده‌سازی معماری‌های نرم‌افزاری مدرن.",
+                "skills.ai.title": "هوش مصنوعی و یادگیری ماشین",
+                "skills.ai.description": "آشنایی با مفاهیم پایه هوش مصنوعی، کار با کتابخانه‌هایی مانند TensorFlow و Scikit-learn، و پیاده‌سازی مدل‌های ساده یادگیری ماشین.",
+                
+                // پروژه‌ها
+                "projects.title": "پروژه‌های نمونه",
+                "projects.project1.title": "فروشگاه آنلاین",
+                "projects.project1.description": "یک فروشگاه آنلاین کامل با سیستم مدیریت محتوا، سبد خرید و درگاه پرداخت. توسعه یافته با React و Node.js.",
+                "projects.project2.title": "سیستم تحلیل داده",
+                "projects.project2.description": "سیستم تحلیل و نمایش داده‌های بزرگ با نمودارهای تعاملی. توسعه یافته با Python و کتابخانه‌های هوش مصنوعی.",
+                "projects.project3.title": "اپلیکیشن موبایل",
+                "projects.project3.description": "اپلیکیشن موبایل برای مدیریت کارهای روزانه با قابلیت اعلان و همگام‌سازی ابری. توسعه یافته با React Native.",
+                
+                // جدول زمانی
+                "timeline.title": "جدول زمانی تجربیات",
+                "timeline.year1.title": "شروع برنامه‌نویسی",
+                "timeline.year1.description": "شروع یادگیری برنامه‌نویسی با زبان Python و مفاهیم پایه علوم کامپیوتر. ساخت اولین پروژه‌های ساده مانند ماشین حساب و بازی دوز.",
+                "timeline.year2.title": "توسعه وب",
+                "timeline.year2.description": "یادگیری HTML، CSS و JavaScript. شروع به توسعه وب‌سایت‌های استاتیک و داینامیک. آشنایی با مفاهیم طراحی واکنش‌گرا و تجربه کاربری.",
+                "timeline.year3.title": "توسعه فول‌استک",
+                "timeline.year3.description": "یادگیری توسعه بک‌اند با Node.js و Express. کار با پایگاه‌داده‌های MongoDB و MySQL. توسعه اولین اپلیکیشن‌های فول‌استک کامل.",
+                "timeline.year4.title": "هوش مصنوعی و پروژه‌های بزرگ",
+                "timeline.year4.description": "شروع یادگیری مفاهیم هوش مصنوعی و یادگیری ماشین. توسعه پروژه‌های بزرگ‌تر با معماری پیچیده‌تر. همکاری در پروژه‌های متن‌باز و مشارکت در جامعه توسعه‌دهندگان.",
+                
+                // پاورقی
+                "footer.aboutTitle": "مهدی مرادی",
+                "footer.aboutDescription": "توسعه‌دهنده فول‌استک و علاقه‌مند به هوش مصنوعی. متخصص در ساخت وب‌سایت‌های مدرن و اپلیکیشن‌های تحت وب.",
+                "footer.contactTitle": "تماس با من",
+                "footer.location": "تهران، ایران",
+                "footer.skillsTitle": "زبان‌ها",
+                "footer.language1": "فارسی (زبان مادری)",
+                "footer.language2": "انگلیسی (پیشرفته)",
+                "footer.language3": "چینی (پایه)",
+                "footer.copyright": "© ۲۰۲۴ | طراحی و توسعه توسط مهدی مرادی. تمامی حقوق محفوظ است."
+            },
+            
+            en: {
+                // Navigation
+                "nav.logo": "Mehdi Moradi",
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.skills": "Skills",
+                "nav.projects": "Projects",
+                "nav.timeline": "Timeline",
+                "nav.contact": "Contact",
+                
+                // Languages
+                "language.fa": "Persian",
+                "language.en": "English",
+                "language.zh": "Chinese",
+                
+                // Hero
+                "hero.title": "Full-Stack Developer",
+                "hero.subtitle": "and AI Specialist",
+                "hero.description": "I'm Mehdi Moradi, a 15-year-old software developer with 2 years of experience in web development and artificial intelligence. I love creating digital products that make life easier.",
+                "hero.age": "Age",
+                "hero.experience": "Years Experience",
+                "hero.skills": "Expertise Areas",
+                "hero.projects": "Projects Done",
+                
+                // About
+                "about.title": "About Me",
+                "about.name": "Mehdi Moradi",
+                "about.role": "Full-Stack Developer and AI Enthusiast",
+                "about.bio": "I started learning programming at the age of 13 and since then I have been continuously learning and developing various projects. I love solving complex problems with code and am interested in new technologies, especially in the field of artificial intelligence and machine learning. My goal is to build a better future with technology.",
+                "about.passion": "My goal is to build a better future with technology.",
+                "about.languages.farsi": "Persian",
+                "about.languages.english": "English",
+                "about.languages.chinese": "Chinese",
+                "about.languages.native": "Native Language",
+                "about.languages.advanced": "Advanced Level",
+                "about.languages.basic": "Basic Level",
+                
+                // Skills
+                "skills.title": "Specialized Skills",
+                "skills.frontend.title": "Frontend Development",
+                "skills.frontend.description": "Proficiency in HTML5, CSS3, JavaScript and modern frameworks like React.js and Vue.js. Designing responsive user interfaces and optimal user experience.",
+                "skills.backend.title": "Backend Development",
+                "skills.backend.description": "Experience in API development with Node.js and Express, working with SQL and NoSQL databases, and implementing modern software architectures.",
+                "skills.ai.title": "Artificial Intelligence & Machine Learning",
+                "skills.ai.description": "Familiarity with basic AI concepts, working with libraries like TensorFlow and Scikit-learn, and implementing simple machine learning models.",
+                
+                // Projects
+                "projects.title": "Sample Projects",
+                "projects.project1.title": "Online Store",
+                "projects.project1.description": "A complete online store with content management system, shopping cart and payment gateway. Developed with React and Node.js.",
+                "projects.project2.title": "Data Analysis System",
+                "projects.project2.description": "Large data analysis and visualization system with interactive charts. Developed with Python and AI libraries.",
+                "projects.project3.title": "Mobile Application",
+                "projects.project3.description": "Mobile application for daily task management with notification and cloud sync capabilities. Developed with React Native.",
+                
+                // Timeline
+                "timeline.title": "Experience Timeline",
+                "timeline.year1.title": "Starting Programming",
+                "timeline.year1.description": "Started learning programming with Python language and basic computer science concepts. Building first simple projects like calculator and tic-tac-toe.",
+                "timeline.year2.title": "Web Development",
+                "timeline.year2.description": "Learning HTML, CSS and JavaScript. Starting to develop static and dynamic websites. Familiarity with responsive design and user experience concepts.",
+                "timeline.year3.title": "Full-Stack Development",
+                "timeline.year3.description": "Learning backend development with Node.js and Express. Working with MongoDB and MySQL databases. Developing first complete full-stack applications.",
+                "timeline.year4.title": "AI & Large Projects",
+                "timeline.year4.description": "Starting to learn artificial intelligence and machine learning concepts. Developing larger projects with more complex architecture. Collaborating on open-source projects and participating in developer community.",
+                
+                // Footer
+                "footer.aboutTitle": "Mehdi Moradi",
+                "footer.aboutDescription": "Full-stack developer and AI enthusiast. Specialist in building modern websites and web applications.",
+                "footer.contactTitle": "Contact Me",
+                "footer.location": "Tehran, Iran",
+                "footer.skillsTitle": "Languages",
+                "footer.language1": "Persian (Native)",
+                "footer.language2": "English (Advanced)",
+                "footer.language3": "Chinese (Basic)",
+                "footer.copyright": "© 2024 | Designed and developed by Mehdi Moradi. All rights reserved."
+            },
+            
+            zh: {
+                // 导航
+                "nav.logo": "迈赫迪·莫拉迪",
+                "nav.home": "首页",
+                "nav.about": "关于我",
+                "nav.skills": "技能",
+                "nav.projects": "项目",
+                "nav.timeline": "时间线",
+                "nav.contact": "联系",
+                
+                // 语言
+                "language.fa": "波斯语",
+                "language.en": "英语",
+                "language.zh": "中文",
+                
+                // 英雄部分
+                "hero.title": "全栈开发人员",
+                "hero.subtitle": "和人工智能专家",
+                "hero.description": "我是迈赫迪·莫拉迪，一名15岁的软件开发人员，拥有2年网络开发和人工智能经验。我喜欢创造让生活更轻松的数字产品。",
+                "hero.age": "年龄",
+                "hero.experience": "经验年数",
+                "hero.skills": "专业领域",
+                "hero.projects": "完成项目",
+                
+                // 关于我
+                "about.title": "关于我",
+                "about.name": "迈赫迪·莫拉迪",
+                "about.role": "全栈开发人员与人工智能爱好者",
+                "about.bio": "我从13岁开始学习编程，从那时起一直在不断学习和发展各种项目。我喜欢用代码解决复杂问题，对新技术特别是人工智能和机器学习领域感兴趣。我的目标是用技术建设更美好的未来。",
+                "about.passion": "我的目标是用技术建设更美好的未来。",
+                "about.languages.farsi": "波斯语",
+                "about.languages.english": "英语",
+                "about.languages.chinese": "中文",
+                "about.languages.native": "母语",
+                "about.languages.advanced": "高级水平",
+                "about.languages.basic": "基础水平",
+                
+                // 技能
+                "skills.title": "专业技能",
+                "skills.frontend.title": "前端开发",
+                "skills.frontend.description": "精通HTML5、CSS3、JavaScript和现代框架如React.js和Vue.js。设计响应式用户界面和优化用户体验。",
+                "skills.backend.title": "后端开发",
+                "skills.backend.description": "使用Node.js和Express进行API开发的经验，使用SQL和NoSQL数据库，并实施现代软件架构。",
+                "skills.ai.title": "人工智能与机器学习",
+                "skills.ai.description": "熟悉基本AI概念，使用TensorFlow和Scikit-learn等库，并实现简单的机器学习模型。",
+                
+                // 项目
+                "projects.title": "示例项目",
+                "projects.project1.title": "在线商店",
+                "projects.project1.description": "完整的在线商店，包含内容管理系统、购物车和支付网关。使用React和Node.js开发。",
+                "projects.project2.title": "数据分析系统",
+                "projects.project2.description": "大型数据分析与可视化系统，具有交互式图表。使用Python和AI库开发。",
+                "projects.project3.title": "移动应用",
+                "projects.project3.description": "用于日常任务管理的移动应用，具有通知和云同步功能。使用React Native开发。",
+                
+                // 时间线
+                "timeline.title": "经验时间线",
+                "timeline.year1.title": "开始编程",
+                "timeline.year1.description": "开始用Python语言和基础计算机科学概念学习编程。构建第一个简单项目如计算器和井字游戏。",
+                "timeline.year2.title": "网页开发",
+                "timeline.year2.description": "学习HTML、CSS和JavaScript。开始开发静态和动态网站。熟悉响应式设计和用户体验概念。",
+                "timeline.year3.title": "全栈开发",
+                "timeline.year3.description": "学习使用Node.js和Express进行后端开发。使用MongoDB和MySQL数据库。开发第一个完整的全栈应用。",
+                "timeline.year4.title": "人工智能与大型项目",
+                "timeline.year4.description": "开始学习人工智能和机器学习概念。开发具有更复杂架构的大型项目。参与开源项目并加入开发者社区。",
+                
+                // 页脚
+                "footer.aboutTitle": "迈赫迪·莫拉迪",
+                "footer.aboutDescription": "全栈开发人员与人工智能爱好者。专业构建现代网站和网络应用。",
+                "footer.contactTitle": "联系我",
+                "footer.location": "伊朗，德黑兰",
+                "footer.skillsTitle": "语言",
+                "footer.language1": "波斯语（母语）",
+                "footer.language2": "英语（高级）",
+                "footer.language3": "中文（基础）",
+                "footer.copyright": "© 2024 | 由迈赫迪·莫拉迪设计和开发。保留所有权利。"
+            }
+        };
+
+        // داده‌های توسعه‌دهنده
+        const developer = {
+            name: "Mehdi Moradi",
+            name_fa: "مهدی مرادی",
+            age: 15,
+            experience: 2,
+            skills: ["Frontend", "Backend", "AI/ML"],
+            passion: "Building the future",
+            passion_fa: "ساختن آینده‌ای بهتر با تکنولوژی"
+        };
+
+        // تغییر زبان
+        function changeLanguage(lang) {
+            // تغییر متن‌های دارای data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // به‌روزرسانی انتخابگر زبان
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // به‌روزرسانی دکمه زبان
+            const languageBtnText = document.querySelector('.language-btn span[data-i18n]');
+            if (languageBtnText && translations[lang]) {
+                const langKey = languageBtnText.getAttribute('data-i18n');
+                if (translations[lang][langKey]) {
+                    languageBtnText.textContent = translations[lang][langKey];
+                }
+            }
+            
+            // تغییر جهت صفحه برای زبان‌های مختلف
+            if (lang === 'fa') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'fa';
+            } else if (lang === 'zh') {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'zh';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'en';
+            }
+            
+            // ذخیره زبان انتخابی
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // بارگذاری اطلاعات در صفحه
+        document.addEventListener('DOMContentLoaded', function() {
+            // نمایش سن در بخش هیرو
+            document.getElementById('age-display').textContent = developer.age;
+            
+            // نمایش سابقه کار در بخش هیرو
+            document.getElementById('exp-display').textContent = developer.experience;
+            
+            // نمایش اشتیاق
+            document.getElementById('passion-text').textContent = developer.passion_fa;
+            
+            // بارگذاری زبان ترجیحی
+            const savedLang = localStorage.getItem('preferred-language') || 'fa';
+            changeLanguage(savedLang);
+            
+            // رویدادهای انتخاب زبان
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // فعال‌سازی نویگیشن
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            
+            function changeActiveNavLink() {
+                let currentSectionId = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', changeActiveNavLink);
+            
+            // اضافه کردن انیمیشن به المان‌ها هنگام اسکرول
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // مشاهده المان‌های قابل انیمیشن
+            document.querySelectorAll('.skill-card, .project-card, .hero-stat, .timeline-content').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+            
+            // انیمیشن کارت پروفایل
+            const profileCard = document.querySelector('.profile-card-wide');
+            profileCard.style.opacity = '0';
+            profileCard.style.transform = 'translateY(30px)';
+            profileCard.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            
+            setTimeout(() => {
+                profileCard.style.opacity = '1';
+                profileCard.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // تعامل با کارت پروفایل
+            profileCard.addEventListener('mousemove', (e) => {
+                const rect = profileCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 40;
+                const rotateX = (centerY - y) / 40;
+                
+                profileCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            profileCard.addEventListener('mouseleave', () => {
+                profileCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+            
+            // پشتیبانی از کلیک روی دکمه‌های زبان در فوتر
+            document.querySelectorAll('.footer-section a[data-lang]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
